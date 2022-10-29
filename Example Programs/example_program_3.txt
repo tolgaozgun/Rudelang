@@ -1,0 +1,39 @@
+void start() {
+   boolean result = pls useFunctions();
+   if(result) {
+       pls print("Success");
+   } else {
+       pls print("Failure");
+   }
+   return;
+}
+
+boolean func useFunctions(){
+   pls connectToInternet();
+   long currentTime = pls getCurrentTimestamp();
+   boolean isInternet = pls isConnectedToInternet();
+   if(isInternet) {
+      boolean isSuccess = pls connectToURL("https://anarbitraryurl.com");
+      boolean isLogging = pls connectToURL("https://urltologdata.com");
+      if(isSuccess && isLogging) {
+          pls print("Please enter the integer to be sent");
+          int input = pls enter();
+          pls sendDataToURL("https://anarbitraryurl.com", input);
+          pls sendDataToURL("https://urltologdata.com", input);
+          
+          int data = pls getDataFromURL("https://anarbitraryurl.com");
+          pls toggleSwitchOn(data); 
+          if (data + 1 >= 10){
+              data = 0;
+          }
+	  pls toggleSwitchOff(data + 1);
+       }
+       return true;      
+   } else {
+      pls print("Error in internet connection");
+      return false;
+   }
+}
+endpls
+
+

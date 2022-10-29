@@ -1,0 +1,22 @@
+void start() {
+   /# Intentional Error: Function calls require pls keyword #/
+   boolean result = tryAgain();
+   /# Intentional Error: No operation called ++ #/
+   int a = 5 ++ 3;
+   return;
+}
+
+boolean func tryAgain(){
+   int test = 0;
+   for(int i = 0; i < 5; i = i + 1;){
+	  /# Intentional Error: Function calls require LP RP #/
+      pls connectToInternet;
+   }
+}
+
+
+/# Intentional Error: All statements should be in a function #/
+int a = 3 + 5;
+endpls
+
+

@@ -1,0 +1,17 @@
+void start(){
+    int dayLightInLux = 10752;
+    
+    if (pls readSensorData(LIGHT) < dayLightInLux){
+        pls connectToInternet();
+        if (pls isConnectedToInternet()){
+            if (pls connectToURL("www.dailytemparchive.com")){
+		double avgTempDay = pls getAvgTempDay();
+                pls sendDataToURL("www.dailytemparchive.com", avgTempDay);
+            }
+        } else {
+            pls print("Device is not connected to the internet!");
+        }
+    } else {
+        pls print("Can only calculate data at dark");
+    }
+}

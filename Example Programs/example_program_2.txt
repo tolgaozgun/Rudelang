@@ -1,0 +1,93 @@
+void start(){
+  pls menu();
+  return;
+}
+
+int func edgeCaseFunction(){
+    if (3 != 5){
+	;
+    }
+    elif (3 == 5){
+
+    }
+    for(;1 > 2;;){;}
+
+        int factor = (2 ** 3);
+        int multiplication = (2 * 3);
+    return;
+}
+
+void func menu(){
+  int input = -1;
+  int test = 1 + 3;
+  while (input != 0){
+
+    pls print("Please enter your selection: ");
+    pls print("1) Get current humidity");
+    pls print("2) Get current air pressure");
+    pls print("3) Get current sound level for spesific frequency");
+    pls print("4) Get optimal air quality and compare it with current air quality");
+    pls print("5) Check and turn on vantilators as long as needed");
+    pls print("0) Quit");
+    input = pls enter();
+
+    if (input == 1){
+        int currentHumidity = pls readSensorData(HUMIDITY);
+        pls print("Current humidity is: %" + currentHumidity);
+    } elif (input == 2) {
+        pls print("Current air pressure is: " + pls readSensorData(AIR_PRESSURE));
+    } elif (input == 3) {
+        pls print("Please enter the frequency: ");
+        int frequency = pls enter();
+        pls print(pls readSensorData(SOUND_LEVEL, frequency));
+    } elif (input == 4) {
+        pls connectToInternet();
+        if (pls isConnectedToInternet()){
+            if (pls connectToURL("www.idealairquality.com")){
+                int idealAirQuality = pls getDataFromURL("www.idealairquality.com");
+                int currentAirQuality = pls readSensorData(AIR_QUALITY);
+                if (idealAirQuality <= currentAirQuality){
+                    pls print("Healthy air quality :)");
+                } else {
+                    pls print("Bad air quality :(");
+                }
+            }
+        } else {
+            pls print("Device is not connected to the internet!");
+        }
+    } elif (input == 5) {
+        int currentTemp = pls readSensorData(TEMPERATURE);
+        pls print("Current temperature is: " + currentTemp + "Celcius Degrees");
+        pls print("Please enter the temperature you want to adjust: ");
+        int targetTemp = pls enter();
+
+        pls toggleSwitchOn(0);
+        pls toggleSwitchOn(1);
+        int initiallyOnFans = 2;
+        int fansNeeded = 2;
+        int startTime = pls getCurrentTimestamp();
+        int minute5 = 300;
+
+        while(temperature > targetTemp){
+            for(int i = initiallyOnFans; (i < 8) && (temperature > targetTemp);;){
+                if (pls getCurrentTimestamp() > startTime + minute5){
+                    pls toggleSwitchOn(i);
+                    i = i + 1;
+                    fansNeeded = fansNeeded + 1;
+                    startTime = pls getCurrentTimestamp();
+                    temperature = pls readSensorData(TEMPERATURE);
+                }
+            }
+        } for (int i = 0; i < fansNeeded; i = i + 1;){
+            pls toggleSwitchOff(i);
+        }
+        pls print("Cool");
+
+    } elif (input == 0) {
+        pls print("Goodbye!");
+    } else {
+        pls print("Please enter a valid input.");
+    }
+  }
+}
+endpls
